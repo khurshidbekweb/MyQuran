@@ -1,1 +1,1 @@
-export const BASE_URL_PRAYER = ""
+export const BASE_URL_PRAYER = "https://islomapi.uz/api/"

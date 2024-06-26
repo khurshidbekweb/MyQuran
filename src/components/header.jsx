@@ -10,7 +10,7 @@ import DarkMod from './darkMod';
 
 const Navbar = () => {
     return (
-        <div className="drak:bg-gray-900 bg-slate-400">
+        <div className="container drak:bg-[#180B37] bg-slate-400">
             <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>

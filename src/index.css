@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    background-color: #CBD5E1;
+}
+
 .bebas{
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;

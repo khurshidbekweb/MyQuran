@@ -9,10 +9,8 @@ const queryClinet = new QueryClient()
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <QueryClientProvider client={queryClinet}>
-     
-          <App />
-     
-       <Toaster/>
+  <QueryClientProvider client={queryClinet}>     
+      <App />     
+      <Toaster/>
   </QueryClientProvider>
 )
