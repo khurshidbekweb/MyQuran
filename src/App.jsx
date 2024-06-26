@@ -8,12 +8,16 @@ import NotFound from "./pages/notFound";
 import {ThemeProvider, createTheme } from '@mui/material'
 import { ThemeContext } from "./helper/themeContex";
 import { useState } from "react";
+import NomozVaqrlari from "./pages/nomozVaqrlari";
+import Quran from "./pages/quran";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayouts/>}>
       <Route index element={<Landing/>}/>
       <Route path="home" element={<Home/>} />
+      <Route path="home/nomoz_vaqtlari" element={<NomozVaqrlari/>}/>
+      <Route path="home/quran" element={<Quran/>}/>
       <Route path="*" element={<NotFound/>}/>
     </Route>
   )
