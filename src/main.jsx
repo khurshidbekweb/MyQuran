@@ -6,9 +6,13 @@ import { Toaster } from 'react-hot-toast'
 
 const queryClinet = new QueryClient()
 
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClinet}>
-        <App />
+     
+          <App />
+     
        <Toaster/>
   </QueryClientProvider>
 )

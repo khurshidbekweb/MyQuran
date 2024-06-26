@@ -10,7 +10,8 @@ import DarkMod from './darkMod';
 
 const Navbar = () => {
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <div className="drak:bg-gray-900 bg-slate-400">
+            <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
                 <IconButton
@@ -25,10 +26,11 @@ const Navbar = () => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontSize:"25px", fontWeight:"700" }}>
                     MyQuran
                 </Typography>
-                  <DarkMod/>
+                    <DarkMod/>
                 </Toolbar>
             </AppBar>
         </Box>
+        </div>
     );
 };
 

@@ -5,7 +5,17 @@ import Landing from "./pages/landing";
 import RootLayouts from "./layouts/RootLayouts";
 import Home from "./pages/home";
 import NotFound from "./pages/notFound";
+import {ThemeProvider, createTheme } from '@mui/material'
 
+
+const darkMode = JSON.parse(localStorage.getItem('dark-mode'))
+console.log(darkMode);
+
+const darkTheme = createTheme({
+  palette:{
+    mode: darkMode ? "dark" : "light"
+  }
+})
 
 
 const router = createBrowserRouter(
@@ -19,7 +29,11 @@ const router = createBrowserRouter(
 )
 
 const App = () => {
-  return <RouterProvider router={router} />
+  return <>
+    <ThemeProvider theme={darkTheme}>
+        <RouterProvider router={router} />
+    </ThemeProvider>
+  </>
 };
 
 export default App;
