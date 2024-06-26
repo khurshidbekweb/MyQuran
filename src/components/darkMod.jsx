@@ -1,25 +1,27 @@
 
 import { Button } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { GrSun } from "react-icons/gr";
 import { RiMoonClearLine } from "react-icons/ri";
+import { ThemeContext } from "../helper/themeContex";
 
 const DarkMod = () => {
-    const [darkMode, setDarkMode] = useState(false)
+    const {toggleTheme, themeChange} = useContext(ThemeContext)
+
     useEffect(() => {
-        if (darkMode) {
+        if (themeChange) {
           document.documentElement.classList.add('dark');
           localStorage.setItem('dark-mode', JSON.stringify(true));
         } else {
           document.documentElement.classList.remove('dark');
           localStorage.setItem('dark-mode', JSON.stringify(false));
         }
-      }, [darkMode]);
+      }, [themeChange]);
     return (
         <>
-            <Button onClick={() => setDarkMode(!darkMode)} color="inherit">
+            <Button onClick={toggleTheme} color="inherit">
                 {
-                    darkMode?<RiMoonClearLine size={25}/>:<GrSun size={25}/>
+                    themeChange?<GrSun size={25}/>:<RiMoonClearLine size={25}/>
                 }         
             </Button>
         </>

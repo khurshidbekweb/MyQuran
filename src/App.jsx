@@ -6,17 +6,8 @@ import RootLayouts from "./layouts/RootLayouts";
 import Home from "./pages/home";
 import NotFound from "./pages/notFound";
 import {ThemeProvider, createTheme } from '@mui/material'
-
-
-const darkMode = JSON.parse(localStorage.getItem('dark-mode'))
-console.log(darkMode);
-
-const darkTheme = createTheme({
-  palette:{
-    mode: darkMode ? "dark" : "light"
-  }
-})
-
+import { ThemeContext } from "./helper/themeContex";
+import { useState } from "react";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,10 +20,22 @@ const router = createBrowserRouter(
 )
 
 const App = () => {
+  const [themeChange, setThemeChange] = useState(JSON.parse(localStorage.getItem('dark-mode')))
+
+  const toggleTheme = () => {
+    setThemeChange(!themeChange)
+  }
+  const darkTheme = createTheme({
+    palette:{
+      mode: themeChange ? "dark" : "light"
+    }
+  })
   return <>
-    <ThemeProvider theme={darkTheme}>
-        <RouterProvider router={router} />
-    </ThemeProvider>
+        <ThemeContext.Provider value={{themeChange, toggleTheme}}>
+          <ThemeProvider theme={darkTheme}>
+            <RouterProvider router={router} />
+          </ThemeProvider>
+        </ThemeContext.Provider>
   </>
 };
 
