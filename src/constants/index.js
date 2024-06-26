@@ -1,0 +1,2 @@
+import './baseUrlPrayer'
+import './baseUrlQuran'
