@@ -4,24 +4,38 @@ import { IoIosArrowForward } from "react-icons/io";
 import { CiCloudMoon } from "react-icons/ci";
 import { useQuery } from '@tanstack/react-query';
 import { PrayerTimeUtils } from '../utils/prayer_time.utils';
+import { TiWeatherPartlySunny } from "react-icons/ti";
+import { PiSunDimBold } from "react-icons/pi";
+import { WiSunrise } from "react-icons/wi";
+import { PiSunHorizonDuotone } from "react-icons/pi";
+import { RiMoonFoggyLine } from "react-icons/ri";
+import Loading from '../components/loading';
+import TimeLeft from '../components/timeLeft';
 
 
 const NomozVaqrlari = () => {
-    const date = useQuery({
-        queryKey: "times",
+    const {data, isLoading} = useQuery({
+        queryKey: ["times"],
         queryFn: PrayerTimeUtils.getDayTime
     })
-    console.log(date?.data);
+    const nowHour = new Date().getHours()
+    console.log(nowHour);
+    if(data) for (let [fruti, amount] of Object.entries(data?.times)) {
+        console.log(nowHour>amount?.slice(0,2));
+    }
+    // const nowPrayer = Object.entries(data?.times)
+    if(data) Object.values(data?.times)?.forEach((el, i) => {el.slice(0,2)>nowHour?i:""})
+    if(isLoading) return <Loading/>
     return (
         <div className='container h-screen bg-[#180B37] dark:bg-[#180B37]'>
             <div className="image-info relative">
                 <div className="info-prayer absolute top-2 left-4">
                     <h1 className='playfairFont font-bold  text-[38px] text-white'>Namoz vaqtlari</h1>
-                    <h2 className='bebas text-[28px] text-white'>Tashketn</h2>
-                    <p className='playfairFont text-[20px] text-white font-semibold mt-[-5px]'>-1:05:26</p>
+                    <h2 className='bebas text-[28px] text-white'>{data?.region}</h2>
+                    <TimeLeft data={data}/>
                 </div>
                 <div className="main-info absolute text-center bottom-20">
-                    <h2 className='text-[24px] font-bold text-white'>Bomdod <span className='ml-4'>04:17</span></h2>
+                    <h2 className='text-[24px] font-bold text-white'>Bomdod <span className='ml-4'>{data?.times.tong_saharlik}</span></h2>
                     <p className='text-[12px] mt-3 italic font-semibold px-4 text-white'>Lorem ipsum dolor sit, adipisicing elit. Ipsum dicta corporis illo aperiam fugiat!</p>
                 </div>
                 <img className='w-full' src={NomozVaqtlariImg} alt="Nomoz vaqtlari" />
@@ -35,32 +49,32 @@ const NomozVaqrlari = () => {
                     <li className="time-card flex justify-between items-center w-[80%] mx-auto text-white">
                         <CiCloudMoon size={35}/>
                         <p className='text-[20px] font-bold'>Bomdod</p>
-                        <p className='time text-5 font-bold'>02:58</p>
+                        <p className='time text-5 font-bold'>{data?.times.tong_saharlik}</p>
                     </li>
                     <li className="time-card mt-1 flex justify-between items-center w-[80%] mx-auto text-white">
-                        <CiCloudMoon size={35}/>
-                        <p className='text-[20px] font-bold'>Bomdod</p>
-                        <p className='time text-5 font-bold'>02:58</p>
+                        <TiWeatherPartlySunny size={35}/>
+                        <p className='text-[20px] font-bold text-start'>Quyosh</p>
+                        <p className='time text-5 font-bold'>{data?.times.quyosh}</p>
                     </li>
                     <li className="time-card mt-1 flex justify-between items-center w-[80%] mx-auto text-white">
-                        <CiCloudMoon size={35}/>
-                        <p className='text-[20px] font-bold'>Bomdod</p>
-                        <p className='time text-5 font-bold'>02:58</p>
+                        <PiSunDimBold size={33}/>
+                        <p className='text-[20px] font-bold'>Peshin</p>
+                        <p className='time text-5 font-bold'>{data?.times.peshin}</p>
                     </li>
                     <li className="time-card mt-1 flex justify-between items-center w-[80%] mx-auto text-white">
-                        <CiCloudMoon size={35}/>
-                        <p className='text-[20px] font-bold'>Bomdod</p>
-                        <p className='time text-5 font-bold'>02:58</p>
+                        <WiSunrise size={40}/>
+                        <p className='text-[20px] font-bold text-start'>Asr</p>
+                        <p className='time text-5 font-bold'>{data?.times.asr}</p>
                     </li>
                     <li className="time-card mt-1 flex justify-between items-center w-[80%] mx-auto text-white">
-                        <CiCloudMoon size={35}/>
-                        <p className='text-[20px] font-bold'>Bomdod</p>
-                        <p className='time text-5 font-bold'>02:58</p>
+                        <PiSunHorizonDuotone size={35}/>
+                        <p className='text-[20px] font-bold'>Shop</p>
+                        <p className='time text-5 font-bold'>{data?.times.shom_iftor}</p>
                     </li>
                     <li className="time-card mt-1 flex justify-between items-center w-[80%] mx-auto text-white">
-                        <CiCloudMoon size={35}/>
-                        <p className='text-[20px] font-bold'>Bomdod</p>
-                        <p className='time text-5 font-bold'>02:58</p>
+                        <RiMoonFoggyLine size={33}/>
+                        <p className='text-[20px] font-bold'>Hufton</p>
+                        <p className='time text-5 font-bold'>{data?.times.hufton}</p>
                     </li>
             </ul>
             <button className='w-[50%] bg-white rounded-xl mx-auto block mt-8 p-2 font-medium'>Bir oylikni ko`rish</button>
