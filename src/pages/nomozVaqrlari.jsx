@@ -11,6 +11,7 @@ import { PiSunHorizonDuotone } from "react-icons/pi";
 import { RiMoonFoggyLine } from "react-icons/ri";
 import Loading from '../components/loading';
 import TimeLeft from '../components/timeLeft';
+import MonthTime from '../modal/MonthTime';
 
 
 const NomozVaqrlari = () => {
@@ -18,6 +19,7 @@ const NomozVaqrlari = () => {
         queryKey: ["times"],
         queryFn: PrayerTimeUtils.getDayTime
     })
+    console.log(data);
     const nowHour = new Date().getHours()
     let nowPrayer = []
     const arr = []
@@ -40,7 +42,7 @@ const NomozVaqrlari = () => {
                 <img className='w-full' src={NomozVaqtlariImg} alt="Nomoz vaqtlari" />
                 <div className="on-days absolute left-11 bottom-2 w-[75%] bg-white text-black rounded-[60px] flex justify-between items-center p-4">
                     <button><IoIosArrowBack size={25}/></button>
-                    <h3 className='text-[19px] font-black'>20 Aprel 2024</h3>
+                    <h3 className='text-[19px] font-black'>{data?.date}</h3>
                     <button><IoIosArrowForward size={25}/></button>
                 </div>
             </div>
@@ -76,7 +78,7 @@ const NomozVaqrlari = () => {
                         <p className='time text-5 font-bold'>{data?.times.hufton}</p>
                     </li>
             </ul>
-            <button className='w-[50%] bg-white rounded-xl mx-auto block mt-8 p-2 font-medium'>Bir oylikni ko`rish</button>
+            <MonthTime/>
         </div>
     );
 };
