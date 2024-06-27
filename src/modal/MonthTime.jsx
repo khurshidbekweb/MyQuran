@@ -12,7 +12,7 @@ const MonthTime = () => {
     })
     return (
         <div className="container overflow-hidden">
-            <Button onClick={()=>setShow(true)} sx={{backgroundColor: 'white', color: "black", margin: "30px auto", display: "block", ":hover":{backgroundColor: 'white', color: "black"}}} variant="outlined" size="medium">
+            <Button onClick={()=>setShow(true)} sx={{backgroundColor: 'white', color: "black", margin: "20px auto", display: "block", ":hover":{backgroundColor: 'white', color: "black"}}} variant="outlined" size="medium">
                 Bir haftalik taqvimni ko`rish
             </Button>
             <div className={show?"fixed container top-0 w-full h-screen bg-[#180b37f7] bg-blur-sm transition-all duration-[0.5s] translate-y-[0px]":"fixed top-0 transition-all duration-[0.5s] translate-y-[-900px] h-0 w-full container"}>
