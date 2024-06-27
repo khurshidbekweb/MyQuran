@@ -2,11 +2,10 @@ import {useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 
 
-const TimeLeft = ({data}) => {
+const TimeLeft = ({data, time}) => {
     const [timeRemaining, setTimeRemaining] = useState({});
   
   const calculateTimeRemaining = (endtime) => {
-    console.log(data);
     const now = new Date();
     const timeRemaining = Date.parse(endtime) - Date.parse(now);
     const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
@@ -27,7 +26,7 @@ const TimeLeft = ({data}) => {
   };
 
   useEffect(() => {
-    const endTime = getEndTime(data.times.asr); // Change this to the desired prayer time
+    const endTime = getEndTime(data?.times[`${time}`]); // Change this to the desired prayer time
     const updateClock = () => {
       const t = calculateTimeRemaining(endTime);
       setTimeRemaining(t);
@@ -36,7 +35,7 @@ const TimeLeft = ({data}) => {
     updateClock();
     const intervalId = setInterval(updateClock, 1000);
     return () => clearInterval(intervalId);
-  }, [data.times.peshin]);
+  }, [data?.times[`${time}`]]);
     return (
             <p className='playfairFont text-[20px] text-white font-semibold mt-[-5px]'>
                 {timeRemaining.total > 0 ? (
@@ -69,6 +68,7 @@ TimeLeft.propTypes = {
         hufton: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
+    time: PropTypes.string.isRequired
   };
 
 export default TimeLeft;

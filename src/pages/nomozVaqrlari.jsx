@@ -19,12 +19,11 @@ const NomozVaqrlari = () => {
         queryFn: PrayerTimeUtils.getDayTime
     })
     const nowHour = new Date().getHours()
-    console.log(nowHour);
-    if(data) for (let [fruti, amount] of Object.entries(data?.times)) {
-        console.log(nowHour>amount?.slice(0,2));
-    }
-    // const nowPrayer = Object.entries(data?.times)
-    if(data) Object.values(data?.times)?.forEach((el, i) => {el.slice(0,2)>nowHour?i:""})
+    let nowPrayer = []
+    const arr = []
+    if(data) Object.values(data?.times)?.forEach((el, i) => el.slice(0,2)>nowHour?arr.push(i):i)
+    let num = arr[0];
+    if(data) nowPrayer = Object.entries(data?.times)[num]
     if(isLoading) return <Loading/>
     return (
         <div className='container h-screen bg-[#180B37] dark:bg-[#180B37]'>
@@ -32,10 +31,10 @@ const NomozVaqrlari = () => {
                 <div className="info-prayer absolute top-2 left-4">
                     <h1 className='playfairFont font-bold  text-[38px] text-white'>Namoz vaqtlari</h1>
                     <h2 className='bebas text-[28px] text-white'>{data?.region}</h2>
-                    <TimeLeft data={data}/>
+                    <TimeLeft data={data} time={nowPrayer[0]}/>
                 </div>
                 <div className="main-info absolute text-center bottom-20">
-                    <h2 className='text-[24px] font-bold text-white'>Bomdod <span className='ml-4'>{data?.times.tong_saharlik}</span></h2>
+                    <h2 className='text-[24px] font-bold text-white uppercase'>{nowPrayer[0]} <span className='ml-4'>{nowPrayer[1]}</span></h2>
                     <p className='text-[12px] mt-3 italic font-semibold px-4 text-white'>Lorem ipsum dolor sit, adipisicing elit. Ipsum dicta corporis illo aperiam fugiat!</p>
                 </div>
                 <img className='w-full' src={NomozVaqtlariImg} alt="Nomoz vaqtlari" />
