@@ -16,8 +16,8 @@ const Quran = () => {
         queryFn: QuranUtils.getQuran
     })
     const audioQuran = useRef(null)
-    console.dir(audioQuran.current);
     console.log(data?.data);
+    console.dir(audioQuran.current);
     const playAudio = () => {
         audioQuran.current.play();
       };
