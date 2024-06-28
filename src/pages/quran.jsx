@@ -61,7 +61,7 @@ const Quran = () => {
                                     <div className="audio pr-2">
                                         <h2 className="arab text-[20px] font-bold">{el.nama}</h2>
                                         <button onClick={playAudio} className="mr-2"><VscDebugStart size={20}/><audio className="w-full rounded-none" ref={audioQuran} src={el.audioFull['04']}></audio></button>
-                                        <button onClick={stopAudio} className="mr-2"><VscDebugPause size={20}/></button>
+                                        <button onClick={pauseAudio} className="mr-2"><VscDebugPause size={20}/></button>
                                         <button><HiOutlineBookmark size={20}/></button>
                                     </div>
                                 </div>                                
