@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import Border from '../assets/icons/border.svg'
 import { VscDebugStart } from "react-icons/vsc";
 import { HiOutlineBookmark } from "react-icons/hi";
+import { VscDebugPause } from "react-icons/vsc";
+import { useRef } from "react";
 
 
 const Quran = () => {
@@ -13,7 +15,21 @@ const Quran = () => {
         queryKey: ['quranAll'],
         queryFn: QuranUtils.getQuran
     })
+    const audioQuran = useRef(null)
+    console.dir(audioQuran.current);
     console.log(data?.data);
+    const playAudio = () => {
+        audioQuran.current.play();
+      };
+    
+      const pauseAudio = () => {
+        audioQuran.current.pause();
+      };
+    
+      const stopAudio = () => {
+        audioQuran.current.pause();
+        audioQuran.current.currentTime = 0;
+      };
     if(isLoading) return <Loading/>
     return (
         <div className="container overflow-hidden bg-white dark:bg-[#180B37]">
@@ -29,9 +45,9 @@ const Quran = () => {
             </div>
             <div className="body-quran px-2">
                 {data?.data.length && data.data.map(el => {
-                    return <div key={el.nomor} className="card mt-10 h-16 flex justify-between items-center">
-                                <span className="block bg-[#9543FF] h-16 rounded-lg w-2"></span>
-                                <div className="main-info w-[95%] flex justify-between items-center hover:shadow-2xl p-2 py-4 rounded-md">
+                    return <div key={el.nomor} className="card mt-10 h-16 cursor-pointer flex justify-between items-center">
+                                <span className="block bg-[#9543FF] dark:bg-white h-16 rounded-lg w-2"></span>
+                                <div className="main-info w-[95%] flex justify-between dark:text-white items-center hover:shadow-2xl p-2 py-4 rounded-md">
                                     <div className="flex items-center gap-x-4">
                                         <div className="relative text-center">
                                             <img className="w-[50px]" src={Border} alt="" />
@@ -44,10 +60,11 @@ const Quran = () => {
                                     </div>
                                     <div className="audio pr-2">
                                         <h2 className="arab text-[20px] font-bold">{el.nama}</h2>
-                                        <button className="mr-2"><VscDebugStart size={20}/></button>
+                                        <button onClick={playAudio} className="mr-2"><VscDebugStart size={20}/><audio className="w-full rounded-none" ref={audioQuran} src={el.audioFull['04']}></audio></button>
+                                        <button onClick={stopAudio} className="mr-2"><VscDebugPause size={20}/></button>
                                         <button><HiOutlineBookmark size={20}/></button>
                                     </div>
-                                </div>
+                                </div>                                
                             </div>
                 })}
             </div>
