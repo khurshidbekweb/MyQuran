@@ -6,19 +6,18 @@ import { useRef, useState } from "react";
 import Border from '../assets/icons/border.svg'
 
 
-const AudioCard = ({el}) => {
-    console.log(el);    
+const AudioCard = ({el}) => { 
     const audioRefs = useRef([]);
     const [playingIndex, setPlayingIndex] = useState(null);
+    // const arr =  Array.from({length: 114}, (_, i)=>i+1)
+
     const playAudio = (index) => {
-        console.log(index, playingIndex);
-        console.log(index==playingIndex);
-        if (playingIndex !== null && playingIndex == index) {
+        if (playingIndex !== null && playingIndex!==index) {
             audioRefs.current[playingIndex].pause();
-            audioRefs.current[playingIndex].currentTime = 0;
         }
-        audioRefs.current[index].play();
-        setPlayingIndex(index);
+        console.log(audioRefs.current[index]);
+        audioRefs.current[index].play();        
+        setPlayingIndex(index)         
     };
 
     const pauseAudio = (index) => {
@@ -33,7 +32,7 @@ const AudioCard = ({el}) => {
     return (
         <div key={el.nomor} className="card mt-10 h-16 cursor-pointer flex justify-between items-center">
             <span className="block bg-[#9543FF] dark:bg-white h-16 rounded-lg w-2"></span>
-            <audio ref={elRef => audioRefs.current[el.nomor] = elRef} className="rounded-none" src={el.audioFull['01']}></audio>
+            <audio ref={elRef => audioRefs.current[el.nomor] = elRef} src={el.audioFull['01']} type="audio/mpeg"></audio>
             <div className="main-info w-[95%] flex justify-between dark:text-white items-center hover:shadow-2xl p-2 py-4 rounded-md">
                 <div className="flex items-center gap-x-4">
                     <div className="relative text-center">
@@ -47,7 +46,7 @@ const AudioCard = ({el}) => {
                 </div>
                 <div className="audio pr-2">
                     <h2 className="arab text-[20px] font-bold">{el.nama}</h2>
-                    <button onClick={() => playAudio(el.nomor)} className={playingIndex !== el.nomor ? "mr-2" : "hidden"}><VscDebugStart size={20} /></button>
+                    <button onClick={()=> playAudio(el.nomor)} className={playingIndex !== el.nomor ? "mr-2" : "hidden"}><VscDebugStart size={20} /></button>
                     <button onClick={() => pauseAudio(el.nomor)} className={playingIndex === el.nomor ? "mr-2" : "hidden"}><VscDebugPause size={20} /></button>
                     <button><HiOutlineBookmark size={20} /></button>
                 </div>
