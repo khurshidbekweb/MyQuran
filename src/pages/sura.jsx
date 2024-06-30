@@ -5,13 +5,14 @@ import { PiShareNetwork } from "react-icons/pi";
 import { LuPlay } from "react-icons/lu";
 import { RiPauseLine } from "react-icons/ri";
 import { useRef, useState } from "react";
+import Loading from "../components/loading";
 
 
 const Sura = () => {
     const {id} = useParams()
     const audioRef = useRef([])
     const [audio, setAudio] = useState(null)
-    const {data} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: ["suralar"],
         queryFn: async ()=> await QuranUtils.getSurh(id)
     })
@@ -29,7 +30,7 @@ const Sura = () => {
         audioRef.current[index].pause();
         setAudio(null);
     };
-    
+    if(isLoading) return <Loading/>
     return (
         <div className="container overflow-hidden bg-white dark:bg-[#180B37]">
             <div className="ml-9 w-[50%]">
