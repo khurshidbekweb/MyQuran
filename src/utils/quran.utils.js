@@ -7,6 +7,7 @@ export const QuranUtils = {
         return data
     },
     getSurh:  async (id) => {
+        console.log(id);
         const {data} = await customAxiosQuran.get(`v2/surat/${id}`)
         return data
     },

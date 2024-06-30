@@ -10,6 +10,7 @@ import { ThemeContext } from "./helper/themeContex";
 import { useState } from "react";
 import NomozVaqrlari from "./pages/nomozVaqrlari";
 import Quran from "./pages/quran";
+import Sura from "./pages/sura";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
       <Route path="home" element={<Home/>} />
       <Route path="home/nomoz_vaqtlari" element={<NomozVaqrlari/>}/>
       <Route path="home/quran" element={<Quran/>}/>
+      <Route path="home/quran/:id"  element={<Sura/>}/>
       <Route path="*" element={<NotFound/>}/>
     </Route>
   )

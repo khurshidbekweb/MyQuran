@@ -4,9 +4,11 @@ import { HiOutlineBookmark } from "react-icons/hi";
 import { VscDebugPause } from "react-icons/vsc";
 import { useRef, useState } from "react";
 import Border from '../assets/icons/border.svg'
+import { Link } from 'react-router-dom';
 
 
 const AudioCard = ({el}) => { 
+    console.log(el);
     const audioRefs = useRef([]);
     const [playingIndex, setPlayingIndex] = useState(null);
     // const arr =  Array.from({length: 114}, (_, i)=>i+1)
@@ -30,11 +32,11 @@ const AudioCard = ({el}) => {
     //     audioRefs.current.currentTime = 0;
     // };
     return (
-        <div key={el.nomor} className="card mt-10 h-16 cursor-pointer flex justify-between items-center">
+        <div key={el.nomor} className="card mt-10  h-16 cursor-pointer flex justify-between items-center">
             <span className="block bg-[#9543FF] dark:bg-white h-16 rounded-lg w-2"></span>
             <audio ref={elRef => audioRefs.current[el.nomor] = elRef} src={el.audioFull['01']} type="audio/mpeg"></audio>
             <div className="main-info w-[95%] flex justify-between dark:text-white items-center hover:shadow-2xl p-2 py-4 rounded-md">
-                <div className="flex items-center gap-x-4">
+                <Link to={`/home/quran/${el.nomor}`} className="flex items-center gap-x-4 w-[80%]">
                     <div className="relative text-center">
                         <img className="w-[50px]" src={Border} alt="" />
                         <p className={`absolute top-[12px] font-bold ${el.nomor < 9 ? 'left-5' : el.nomor < 99 ? 'left-4' : 'left-3'} text-center`}>{el.nomor}</p>
@@ -43,7 +45,7 @@ const AudioCard = ({el}) => {
                         <h2 className="embad text-[20px] font-semibold">{el.namaLatin}</h2>
                         <h3 className="embad text-[15px] font-semibold text-[#8789A3] uppercase">{el.tempatTurun} {el.jumlahAyat} Ayat</h3>
                     </div>
-                </div>
+                </Link>
                 <div className="audio pr-2">
                     <h2 className="arab text-[20px] font-bold">{el.nama}</h2>
                     <button onClick={()=> playAudio(el.nomor)} className={playingIndex !== el.nomor ? "mr-2" : "hidden"}><VscDebugStart size={20} /></button>
