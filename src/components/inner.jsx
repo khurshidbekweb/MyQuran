@@ -12,9 +12,10 @@ const Inner = () => {
         queryFn: PrayerTimeUtils.getDayTime
     })
     const nowHour = new Date().getHours()
+    const nowMinute = new Date().getMinutes()
     let nowPrayer = []
     const arr = []
-    if(data) Object.values(data?.times)?.forEach((el, i) => el.slice(0,2)>nowHour?arr.push(i):i)
+    if(data) Object.values(data?.times)?.forEach((el, i) => el.slice(0,2)>=nowHour && el.slice(3,5)>=nowMinute ?arr.push(i):i)
     let num = arr[0];
     if(data) nowPrayer = Object.entries(data?.times)[num]
     if(isLoading) return <Loading/>
