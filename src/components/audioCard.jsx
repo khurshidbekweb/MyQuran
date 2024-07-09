@@ -31,6 +31,7 @@ const AudioCard = ({el}) => {
     //     audioRefs.current.pause();
     //     audioRefs.current.currentTime = 0;
     // };
+    
     return (
         <div key={el.nomor} className="card mt-10  h-16 cursor-pointer flex justify-between items-center">
             <span className="block bg-[#9543FF] dark:bg-white h-16 rounded-lg w-2"></span>
