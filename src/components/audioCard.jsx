@@ -8,11 +8,10 @@ import { Link } from 'react-router-dom';
 
 
 const AudioCard = ({el}) => { 
-    console.log(el);
     const audioRefs = useRef([]);
     const [playingIndex, setPlayingIndex] = useState(null);
     // const arr =  Array.from({length: 114}, (_, i)=>i+1)
-
+    
     const playAudio = (index) => {
         if (playingIndex !== null && playingIndex!==index) {
             audioRefs.current[playingIndex].pause();
@@ -21,21 +20,16 @@ const AudioCard = ({el}) => {
         audioRefs.current[index].play();        
         setPlayingIndex(index)         
     };
-
+    const hofiz = localStorage.getItem('hofiz')
     const pauseAudio = (index) => {
         audioRefs.current[index].pause();
         setPlayingIndex(null);
     };
-    
-    // const stopAudio = () => {
-    //     audioRefs.current.pause();
-    //     audioRefs.current.currentTime = 0;
-    // };
-    
+    console.log(el.audioFull[hofiz]);
     return (
-        <div key={el.nomor} className="card mt-10  h-16 cursor-pointer flex justify-between items-center">
+        <div className="card mt-10  h-16 cursor-pointer flex justify-between items-center">
             <span className="block bg-[#9543FF] dark:bg-white h-16 rounded-lg w-2"></span>
-            <audio ref={elRef => audioRefs.current[el.nomor] = elRef} src={el.audioFull['01']} type="audio/mpeg"></audio>
+            <audio ref={elRef => audioRefs.current[el.nomor] = elRef} src={el.audioFull[{hofiz}]} type="audio/mpeg"></audio>
             <div className="main-info w-[95%] flex justify-between dark:text-white items-center hover:shadow-2xl p-2 py-4 rounded-md">
                 <Link to={`/home/quran/${el.nomor}`} className="flex items-center gap-x-4 w-[80%]">
                     <div className="relative text-center">

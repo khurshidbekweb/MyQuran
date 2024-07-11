@@ -4,6 +4,7 @@ import Loading from "../components/loading";
 import QuranImg from '../assets/images/quranhone.png'
 import { Link } from "react-router-dom";
 import AudioCard from "../components/audioCard";
+import HofizQuran from "../components/hofizQuran";
 
 
 const Quran = () => {
@@ -14,6 +15,7 @@ const Quran = () => {
     if(isLoading) return <Loading/>
     return (
         <div className="container overflow-hidden bg-white dark:bg-[#180B37]">
+            <HofizQuran/>
             <div className="head-image relative h-[300px] dark:text-white">
                 <div className="info w-[50%] pl-2">
                     <h1 className="text-[#9543FF] dark:text-[white] mt-3 text-[35px] font-black">My Quran</h1>

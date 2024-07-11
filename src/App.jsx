@@ -25,6 +25,7 @@ const router = createBrowserRouter(
   )
 )
 
+
 const App = () => {
   const [themeChange, setThemeChange] = useState(JSON.parse(localStorage.getItem('dark-mode')))
 
