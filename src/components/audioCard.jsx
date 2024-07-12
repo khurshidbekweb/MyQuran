@@ -29,7 +29,7 @@ const AudioCard = ({el}) => {
     return (
         <div className="card mt-10  h-16 cursor-pointer flex justify-between items-center">
             <span className="block bg-[#9543FF] dark:bg-white h-16 rounded-lg w-2"></span>
-            <audio ref={elRef => audioRefs.current[el.nomor] = elRef} src={el.audioFull[{hofiz}]} type="audio/mpeg"></audio>
+            <audio ref={elRef => audioRefs.current[el.nomor] = elRef} src={el.audioFull[hofiz]} type="audio/mpeg"></audio>
             <div className="main-info w-[95%] flex justify-between dark:text-white items-center hover:shadow-2xl p-2 py-4 rounded-md">
                 <Link to={`/home/quran/${el.nomor}`} className="flex items-center gap-x-4 w-[80%]">
                     <div className="relative text-center">
