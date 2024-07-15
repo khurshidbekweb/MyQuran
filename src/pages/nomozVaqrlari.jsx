@@ -80,13 +80,13 @@ const NomozVaqrlari = () => {
                     <h2 className="bebas text-[28px] text-white">{data?.region}</h2>
                     <TimeLeft data={data} time={nowPrayer[0]} />
                 </div>
-                <div className="main-info absolute text-center bottom-20">
+                <div className="main-info w-full absolute text-center bottom-20">
                     <h2 className="text-[24px] font-bold text-white uppercase">
                         {nowPrayer[0]} <span className="ml-4">{nowPrayer[1]}</span>
                     </h2>
-                    <p className="text-[12px] mt-3 italic font-semibold px-4 text-white">
-                        Lorem ipsum dolor sit, adipisicing elit. Ipsum dicta corporis illo
-                        aperiam fugiat!
+                    <p className="text-[18px] w-full mt-3 font-semibold px-4 text-white arab">إِنَّ الصَّلاَةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَاباً مَّوْقُوتاً</p>
+                    <p className="text-[14px] italic font-semibold px-4 text-white">                    
+                        Albatta, namoz mo‘minlarga vaqtida farz qilingandir
                     </p>
                 </div>
                 <img className="w-full" src={NomozVaqtlariImg} alt="Nomoz vaqtlari" />
