@@ -7,11 +7,11 @@ import Border from '../assets/icons/border.svg'
 import { Link } from 'react-router-dom';
 
 
-const AudioCard = ({el}) => { 
+const AudioCard = ({el, panning}) => { 
+    console.log(panning);
     const audioRefs = useRef([]);
     console.log(el);
     const [playingIndex, setPlayingIndex] = useState(null);
-    // const arr =  Array.from({length: 114}, (_, i)=>i+1)
     
     const playAudio = (index) => {
         if (playingIndex !== null && playingIndex!==index) {

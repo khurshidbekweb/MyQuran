@@ -12,11 +12,13 @@ const Sura = () => {
     const {id} = useParams()
     const audioRef = useRef([])
     const [audio, setAudio] = useState(null)
-    const {data, isLoading} = useQuery({
+    const {data, isLoading, isPending} = useQuery({
         queryKey: ["suralar"],
         queryFn: async ()=> await QuranUtils.getSurh(id)
     })
     console.log(data?.data);
+
+
     const playAudio = (index) => {
         if (audio !== null && audio!==index) {
             audioRef.current[audio].pause();
@@ -25,11 +27,16 @@ const Sura = () => {
         audioRef.current[index].play();        
         setAudio(index)         
     };
-
     const pauseAudio = (index) => {
         audioRef.current[index].pause();
         setAudio(null);
     };
+    console.log(isPending);
+    const playerAudio = (el) => {
+        console.log(el);
+        playAudio(el)
+    }
+
     if(isLoading) return <Loading/>
     return (
         <div className="container overflow-hidden bg-white dark:bg-[#180B37]">
@@ -45,7 +52,7 @@ const Sura = () => {
                                     <span className={`text-white bg-[#9543FF] rounded-full p-1 ${el.nomorAyat<10?'px-3':el.nomorAyat<100?'px-2':'px-1'}`}>{el.nomorAyat}</span>
                                     <div className="flex gap-4">
                                         <button><PiShareNetwork size={25}/></button>
-                                        <button onClick={()=>playAudio(el.nomorAyat)} className={audio==el.nomorAyat?'hidden':''}><LuPlay size={25}/></button>
+                                        <button onClick={()=>playerAudio(el.nomorAyat)} className={audio==el.nomorAyat?'hidden':''}><LuPlay size={25}/></button>
                                         <button onClick={()=>pauseAudio(el.nomorAyat)} className={audio==el.nomorAyat?'':'hidden'}><RiPauseLine size={25} /></button>
                                     </div>
                                 </div>
