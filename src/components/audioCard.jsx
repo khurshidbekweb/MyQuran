@@ -7,8 +7,7 @@ import Border from '../assets/icons/border.svg'
 import { Link } from 'react-router-dom';
 
 
-const AudioCard = ({el, panning}) => { 
-    console.log(panning);
+const AudioCard = ({el}) => { 
     const audioRefs = useRef([]);
     console.log(el);
     const [playingIndex, setPlayingIndex] = useState(null);
@@ -61,8 +60,8 @@ AudioCard.propTypes = {
         namaLatin: PropTypes.string.isRequired,
         tempatTurun: PropTypes.string.isRequired,
         jumlahAyat: PropTypes.number.isRequired,
-        nama: PropTypes.string.isRequired
-    }).isRequired
+        nama: PropTypes.string.isRequired,
+    }).isRequired,
 };
 
 export default AudioCard;

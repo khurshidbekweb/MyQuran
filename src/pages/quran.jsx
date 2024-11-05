@@ -8,7 +8,7 @@ import HofizQuran from "../components/hofizQuran";
 
 
 const Quran = () => {
-    const {data, isLoading} = useQuery({
+    const {data, isLoading, } = useQuery({
         queryKey: ['quranAll'],
         queryFn: QuranUtils.getQuran
     })

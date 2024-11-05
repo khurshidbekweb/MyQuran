@@ -10,16 +10,16 @@ const Inner = () => {
     const {data, isLoading} = useQuery({
         queryKey: ["times"],
         queryFn: PrayerTimeUtils.getDayTime
-    })
+    })    
     const nowHour = new Date().getHours()
     const nowMinute = new Date().getMinutes()
     let nowPrayer = []
     const arr = []
     if(data) Object.values(data?.times)?.forEach((el, i) => el.slice(0,2)>=nowHour && el.slice(3,5)>=nowMinute ?arr.push(i):i)
     let num = arr[0];
-    if(data) nowPrayer = Object.entries(data?.times)[num]
-    console.log(nowPrayer);
-    if(isLoading) return <Loading/>
+if(data) nowPrayer = Object.entries(data?.times)[num]
+console.log(nowPrayer);
+if(isLoading) return <Loading/>
     return (
         <div className="container mx-auto">
             <div className="pt-28 max-w-[414px] px-2 dark:bg-[#180B37] h-screen absolute top-0 z-[-1]">
